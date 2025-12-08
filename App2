@@ -1,0 +1,58 @@
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+
+from prophet import Prophet
+
+st.title("Estimando Emissões de CO₂ de Data Centers no Brasil")
+
+pages = ["Quem somos","Apresentação","Dashboard", "Referências"]
+choice = st.sidebar.radio("Páginas", pages)
+
+if choice == "Quem somos":
+    st.header("Integrantes")
+    st.write("- Diego Paz Oliveira Morais")
+    st.write("- Sergio Augusto de Araújo")
+    st.write("- Ary Paulo Wiese Neto")
+    st.write("- Pedro Henrique Sousa dos Santos")
+
+    st.header("Monitor")
+    st.write("- Gabriel Brito de França")
+
+elif choice == "Apresentação":
+    st.subheader("Objetivo Geral")
+    st.write("Desenvolver um estimador exploratório (uma aplicação simples em Python) que calcule as emissões operacionais de CO₂ associadas ao consumo elétrico de data centers no Brasil, a partir de:")
+    st.write("- dados da matriz elétrica (fatores de emissão de CO₂ por MWh);")
+    st.write("- dados de consumo de energia elétrica;")
+    st.write("hipóteses sobre a participação dos data centers no consumo total de energia.")
+    st.write("Ao longo do notebook, Vamos:")
+    st.write("1. Carregar e visualizar os fatores de emissão anuais (tCO₂/MWh).")
+    st.write("2. Carregar os dados de consumo de energia, agregando-os por ano.")
+    st.write("3. Relacionar consumo e fatores de emissão para obter emissões anuais totais.")
+    st.write("4. Estimar a parcela de emissões atribuída aos data centers.")
+    st.write("5. Projetar essas emissões para o futuro utilizando séries temporais e gerar gráficos de visualização.")
+    st.subheader("O projeto")
+    st.write("Este notebook faz parte do projeto de APC e tem como foco estimar e projetar as emissões de CO₂ associadas ao consumo de energia de data centers no Brasil.")
+    st.write("A ideia é construir um fluxo completo de análise de dados:")
+    st.write("1. Ler e organizar fontes de dados públicas (planilhas/CSV).")
+    st.write("2. Tratar e padronizar as informações (anos, unidades, tipos numéricos).")
+    st.write("3. Calcular indicadores de interesse (fatores de emissão, consumo anual, emissões).")
+    st.write("4. Aplicar um modelo simples de previsão para explorar cenários futuros.")
+    st.write("O resultado final é um estimador que ajuda a entender como o crescimento do consumo de data centers pode impactar o perfil de emissões do país ao longo do tempo.")
+    st.subheader("Bibliotecas")
+    st.write("Nesta etapa importamos as bibliotecas Python que serão usadas ao longo do notebook:")
+    st.write("- pandas: para carregar, tratar e manipular dados em formato de tabelas (DataFrames).")
+    st.write("- matplotlib.pyplot: para criar gráficos estáticos (linhas, pontos, etc.).")
+    st.write("- numpy: para operações numéricas e suporte a vetores/arrays.")
+    st.write("- os: para lidar com caminhos de arquivos e pastas.")
+elif choice == "Dashboard":
+    st.header("Dashboard Page")
+    st.write("Metrics and charts go here.")
+
+
+
+elif choice == "Referência":
+    st.header("Settings Page")
+    st.write("User preferences here.")
