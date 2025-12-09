@@ -296,7 +296,7 @@ fig.update_layout(
     title="Histórico vs Cenários – Emissões e Consumo dos Data Centers"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, width='stretch')
 
 
 #############################################################
