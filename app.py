@@ -1,7 +1,5 @@
 #############################################################
-# Estimador de Emissões de CO₂ de Data Centers no Brasil
-# Versão Final – focada em brincar com cenários de participação
-# dos DCs no consumo de energia e ver o impacto em tCO₂.
+# Estimador de Emissões de CO₂ de Data Centers no Brasil.
 #############################################################
 
 import numpy as np
@@ -89,7 +87,7 @@ df_prophet = preparar_prophet(df_final)
 
 @st.cache_resource
 def treinar(df):
-    # Modelo bem enxuto: só tendência, sem sazonalidade diária/semanal
+    # Modelo bem simples: só tendência, sem sazonalidade diária/semanal
     # porque estamos trabalhando com dados anuais.
     model = Prophet(
         growth="linear",
@@ -105,7 +103,6 @@ model = treinar(df_prophet)
 
 #############################################################
 # 4) CONTROLES DO USUÁRIO – NA PÁGINA
-# Esses inputs são a parte "brincar com cenários" do projeto.
 #############################################################
 
 st.markdown("### Configurações do Gráfico")
@@ -142,7 +139,6 @@ with col3:
 
 #############################################################
 # 5) PREVISÃO USANDO PROPHET
-# Aqui é o "chute informado" para frente com base na série histórica.
 #############################################################
 
 periods = ano_fim - ultimo_ano_hist
@@ -174,7 +170,7 @@ anos = previsao["ano"].values.astype(float)
 #############################################################
 # 6) CURVA SUAVE
 # Curva de participação dos DCs ao longo do tempo:
-# - começa baixinha,
+# - começa baixa, em 2006 bate 0,3% (valor estimado),
 # - em 2024 bate 1,7% (dado Brasscom),
 # - e vai até o valor que o usuário escolheu no ano final.
 #############################################################
@@ -235,7 +231,6 @@ df_hist = df_plot[df_plot["ano"] <= ultimo_ano_hist].groupby("ano").first().rese
 
 #############################################################
 # 8) GRÁFICO FINAL – HISTÓRICO + CENÁRIOS, DOIS EIXOS Y
-# Aqui é onde tudo se encontra visualmente: histórico + cenários.
 #############################################################
 
 st.markdown("### Gráfico – Histórico e Cenários")
@@ -281,7 +276,7 @@ for cenario in ["Base", "Otimista", "Pessimista"]:
 
     df_c = df_plot[df_plot["cenario"] == cenario].copy()
 
-    # Conectamos o cenário com o último ponto histórico, pra não ficar "flutuando"
+    # Conectamos o cenário com o último ponto histórico
     df_last = df_hist.tail(1).copy()
     df_last["cenario"] = cenario
     df_c = pd.concat([df_last, df_c[df_c["ano"] > ultimo_ano_hist]])
