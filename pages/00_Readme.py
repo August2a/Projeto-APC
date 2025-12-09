@@ -1,3 +1,8 @@
+import streamlit as st
+
+st.title("README – Como Rodar o Projeto")
+
+st.write("""
 # Estimador de Emissões de CO₂ de Data Centers no Brasil
 
 Este projeto calcula e projeta as emissões operacionais de CO₂ associadas ao consumo elétrico de Data Centers no Brasil, utilizando dados reais e modelos de previsão.
@@ -164,3 +169,4 @@ Monitor:
 ## 9. Considerações Finais
 
 Este projeto combina ciência de dados, modelagem preditiva, análise ambiental e desenvolvimento web, oferecendo uma ferramenta prática para explorar o impacto dos Data Centers no consumo energético brasileiro.
+""")
