@@ -30,7 +30,7 @@ conda install -c conda-forge prophet
 
 ```
 projeto/
- ├── app.py
+ ├── Apresentação.py
  ├── input/
  │   ├── fatores_emissao.csv
  │   └── Dados_abertos_Consumo_Mensal.xlsx
@@ -44,12 +44,12 @@ projeto/
 Regras importantes:
 
 - A pasta deve se chamar pages
-- Apenas app.py deve conter st.set_page_config()
+- Apenas Apresentação.py deve conter st.set_page_config()
 - Páginas dentro de pages não devem chamar set_page_config()
 - Execute sempre via:
 
 ```bash
-streamlit run app.py
+streamlit run Apresentação.py
 ```
 
 ---
@@ -59,7 +59,7 @@ streamlit run app.py
 Execute no terminal:
 
 ```bash
-streamlit run app.py
+streamlit run Apresentação.py
 ```
 
 Não execute diretamente páginas internas como:
